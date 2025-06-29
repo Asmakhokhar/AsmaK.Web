@@ -84,7 +84,7 @@ const NavbarMain = () => {
                   href="#contact" 
                   className="flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-medium shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
                 >
-                  Let's Connect
+                  Let&#39;s Connect
                   <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </motion.div>

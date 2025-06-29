@@ -230,7 +230,7 @@ const ContactForm = () => {
                 </motion.div>
                 <h3 className="text-2xl font-bold text-green-400 mb-2">Message Sent!</h3>
                 <p className="text-gray-300 mb-6">
-                  Thanks for reaching out! I'll get back to you within 24 hours.
+                  Thanks for reaching out! I&#39;ll get back to you within 24 hours.
                 </p>
                 <button
                   onClick={() => setSubmitSuccess(false)}

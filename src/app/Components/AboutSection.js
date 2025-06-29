@@ -80,7 +80,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
           >
-            Technologies I've mastered through years of professional experience and personal projects
+            Technologies I&#39;ve mastered through years of professional experience and personal projects
           </motion.p>
         </motion.div>
       <div className="max-w-7xl mx-auto">

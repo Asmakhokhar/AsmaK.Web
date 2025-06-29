@@ -245,7 +245,7 @@ export default function HeroSection() {
             className="group relative overflow-hidden bg-gradient-to-r from-[#9854FF] to-[#442AC6] hover:from-[#442AC6] hover:to-[#9854FF] text-white py-4 px-10 rounded-lg transition-all duration-500 flex items-center mx-auto shadow-xl hover:shadow-[0_10px_30px_-5px_rgba(152,84,255,0.3)]"
           >
             <span className="relative z-10 flex items-center">
-              Let's Connect
+              Let&#39;s Connect
               <FiArrowRightCircle className="ml-3 group-hover:translate-x-1 transition-transform" />
             </span>
             <span className="absolute inset-0 bg-gradient-to-r from-[#442AC6] to-[#9854FF] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></span>
