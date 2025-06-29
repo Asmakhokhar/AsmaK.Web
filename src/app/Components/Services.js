@@ -203,7 +203,7 @@ export default function ServicesSection() {
             className="text-lg text-gray-300 mb-6"
             whileHover={{ scale: 1.01 }}
           >
-            Need something custom? Let's discuss your project.
+            Need something custom? Let&#39;s discuss your project.
           </motion.p>
           <motion.button
             whileHover={{ 

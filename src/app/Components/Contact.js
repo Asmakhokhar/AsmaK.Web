@@ -127,7 +127,7 @@ const ContactForm = () => {
                       <motion.h2 
                         className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
                       >
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Let's Build Something </span> Amazing
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Let&#39;s Build Something </span> Amazing
                       </motion.h2>
                       
                     </div>
@@ -137,7 +137,7 @@ const ContactForm = () => {
                       whileInView={{ opacity: 1 }}
                       transition={{ delay: 0.3 }}
                     >
-                      Technologies I've mastered through years of professional experience and personal projects
+                      Technologies I&#39;ve mastered through years of professional experience and personal projects
                     </motion.p>
                   </motion.div>
         </motion.div>

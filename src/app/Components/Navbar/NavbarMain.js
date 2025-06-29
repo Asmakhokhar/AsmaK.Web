@@ -137,7 +137,7 @@ const NavbarMain = () => {
                   className="block w-full px-4 py-2 text-center rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium shadow-md"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Let's Connect
+                  Let&#39;s Connect
                 </Link>
               </div>
             </div>

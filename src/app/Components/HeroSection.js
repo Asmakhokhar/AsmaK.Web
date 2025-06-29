@@ -177,7 +177,7 @@ export default function HeroSection() {
           className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight"
         >
           <span className="inline-block">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Asma Khokhar</span>
+            Hi, I&#39;m <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Asma Khokhar</span>
           </span>
           <br />
           <span className="inline-flex items-center">
