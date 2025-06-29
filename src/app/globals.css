@@ -1,16 +1,19 @@
-@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+@import 'tailwindcss';
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+/* Your other CSS here */
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --fontfamily: 'Josefin', sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -19,8 +22,57 @@
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.body {
+  min-height: 100vh;
+  box-sizing: border-box;
+  font-family: var(--fontfamily);
+
 }
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* .asmain {
+  font-family: 'Montserrat', sans-serif;
+}
+.small-text{
+  font-family: 'Lilita', sans-serif;
+}
+.body-text {
+  font-family: 'Josefin', sans-serif;
+}*/
+
+// Add this to your global CSS or CSS module:
+.nav-link {
+  position: relative;
+  padding: 0.5rem 0.25rem;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0.25rem;
+  bottom: 0.25rem;
+  width: calc(100% - 0.5rem);
+  height: 2px;
+  background: #a78bfa;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
