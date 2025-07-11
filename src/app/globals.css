@@ -9,23 +9,16 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
   --fontfamily: 'Josefin', sans-serif;
 }
 
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-.body {
-  min-height: 100vh;
+body {
   box-sizing: border-box;
   font-family: var(--fontfamily);
+
+  background-color: #6d28d9;
+  color: #fff; 
 
 }
 
@@ -40,39 +33,15 @@ img {
   height: auto;
 }
 
-/* .asmain {
-  font-family: 'Montserrat', sans-serif;
-}
-.small-text{
-  font-family: 'Lilita', sans-serif;
-}
-.body-text {
-  font-family: 'Josefin', sans-serif;
-}*/
 
-// Add this to your global CSS or CSS module:
-.nav-link {
-  position: relative;
-  padding: 0.5rem 0.25rem;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  left: 0.25rem;
-  bottom: 0.25rem;
-  width: calc(100% - 0.5rem);
-  height: 2px;
-  background: #a78bfa;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  opacity: 0;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-  transform: scaleX(1);
-  opacity: 1;
-}
-
+ @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(-20px) translateX(10px); }
+        }
+        @keyframes float-delay {
+          0%, 100% { transform: translateY(0) translateX(0); }
+          50% { transform: translateY(15px) translateX(-10px); }
+        }
+        .animate-float { animation: float 12s ease-in-out infinite; }
+        .animate-float-delay { animation: float-delay 15s ease-in-out infinite;
+         }

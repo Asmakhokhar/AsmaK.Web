@@ -169,7 +169,7 @@ export default function HeroSection() {
           </span>
         </motion.div>
 
-        {/* Main heading with typewriter effect */}
+    
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -186,7 +186,7 @@ export default function HeroSection() {
           </span>
         </motion.h1>
 
-        {/* Description with animated underline */}
+      
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -205,7 +205,6 @@ export default function HeroSection() {
           />
         </motion.div>
 
-        {/* Stats */}
         <motion.div 
           className="flex justify-center gap-8 mb-12"
           initial={{ opacity: 0 }}
@@ -232,7 +231,6 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* CTA Button with floating effect */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

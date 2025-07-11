@@ -221,20 +221,6 @@ export default function ServicesSection() {
           </motion.button>
         </motion.div>
       </div>
-
-      {/* Add these styles to your global CSS */}
-      <style jsx global>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(-20px) translateX(10px); }
-        }
-        @keyframes float-delay {
-          0%, 100% { transform: translateY(0) translateX(0); }
-          50% { transform: translateY(15px) translateX(-10px); }
-        }
-        .animate-float { animation: float 12s ease-in-out infinite; }
-        .animate-float-delay { animation: float-delay 15s ease-in-out infinite; }
-      `}</style>
     </section>
   );
 }
