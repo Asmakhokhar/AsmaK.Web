@@ -1,3 +1,4 @@
+"use client";
 import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../../State/menuSlice";
