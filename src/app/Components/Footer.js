@@ -190,7 +190,6 @@ export default function Footer() {
               <h3 className="text-xl font-semibold text-white">Services</h3>
               <ul className="space-y-3 text-purple-100/80">
                 <li className="hover:text-white transition-colors duration-300">Full Stack Development</li>
-                <li className="hover:text-white transition-colors duration-300">UI/UX Design</li>
                 <li className="hover:text-white transition-colors duration-300">Performance Optimization</li>
                 <li className="hover:text-white transition-colors duration-300">Responsive Web Design</li>
                 <li className="hover:text-white transition-colors duration-300">Technical Consulting</li>

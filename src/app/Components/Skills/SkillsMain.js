@@ -112,7 +112,7 @@ const SkillsSection = () => {
   return (
     <section className="relative py-28 px-4 sm:px-6 lg:px-8  overflow-hidden" id="skills">
       {/* Floating particles */}
-      {isMounted && [...Array(15)].map((_, i) => (
+      {/* {isMounted && [...Array(5)].map((_, i) => (
         <motion.div
           key={i}
           className="absolute rounded-full bg-purple-500 opacity-10"
@@ -134,7 +134,7 @@ const SkillsSection = () => {
             ease: "easeInOut"
           }}
         />
-      ))}
+      ))} */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section header */}
