@@ -1,7 +1,6 @@
 import { Geist, Geist_Mono, Comfortaa } from "next/font/google";
 import "./globals.css";
 import ReduxProvider from "./ReduxProvider";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -39,7 +38,9 @@ export default function RootLayout({ children }) {
           <div className="pointer-events-none absolute inset-x-0 -top-32 h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent opacity-30" />
         </div>
 
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

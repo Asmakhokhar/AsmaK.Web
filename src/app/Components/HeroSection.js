@@ -55,12 +55,12 @@ export default function HeroSection() {
     }, 50);
 
     let startExp = 0;
-    const expInc = 1.5 / (duration / 50);
+    const expInc = 2 / (duration / 50);
 
     const counterExp = setInterval(() => {
       startExp += expInc;
-      if (startExp >= 1.5) {
-        startExp = 1.5;
+      if (startExp >= 2) {
+        startExp = 2;
         clearInterval(counterExp);
       }
       setExperienceYears(Math.floor(startExp));

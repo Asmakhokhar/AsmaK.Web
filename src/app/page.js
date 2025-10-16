@@ -10,7 +10,7 @@ import Contact from './Components/Contact';
 import Footer from './Components/Footer';
 import AboutSection from './Components/AboutSection';
 import ServicesSection from './Components/Services';
-
+import ProjectsSection from './Components/ProjectsSection';
 export default function Home() {
 
   // const [loading, setLoading] = useState(true);
@@ -36,6 +36,7 @@ export default function Home() {
         <AboutSection />
         <SkillsMain />
         <ServicesSection />
+        <ProjectsSection />
         <Contact />
       </div>
       <Footer />
