@@ -87,7 +87,7 @@ const NavbarMain = () => {
               icon={<FiArrowRight />}
               onClick={() => setOpen(false)}
             >
-              Let's Connect
+               Let&apos;s Connect
             </Button>
           </div>
 
@@ -124,7 +124,7 @@ const NavbarMain = () => {
             onClick={() => setOpen(false)}
             className="text-center py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600"
           >
-            Let's Connect
+            Let&apos;s Connect
           </a>
         </div>
       </div>
