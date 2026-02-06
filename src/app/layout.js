@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono, Comfortaa } from "next/font/google";
 import "./globals.css";
-import ReduxProvider from "./ReduxProvider";
+// import ReduxProvider from "./ReduxProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,7 +18,7 @@ const comfortaa = Comfortaa({
 });
 
 export const metadata = {
-  title: "Ak | Web Developer",
+  title: "Asma_Dev | Full Stack Developer",
   description:
     "Personal expertise website of Asma Khokhar, showcasing skills, services, and portfolio with a smooth, animated, and responsive design.",
 };
@@ -27,20 +27,19 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <title>Ak | Web Developer</title>
+        <title>Asma_Dev | Full Stack Developer</title>
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased relative min-h-screen text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased relative min-h-screen text-white font-body`}
       >
-        {/* Fixed gradient background (prevents flicker) */}
-        <div aria-hidden className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#071020] via-[#0b1220] to-[#03040a]" />
-          <div className="pointer-events-none absolute inset-x-0 -top-32 h-96 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-500/20 via-transparent to-transparent opacity-30" />
+       {/* Fixed full background */}
+        <div className="fixed inset-0 -z-10">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#581789] via-[#3b0f62] to-[#1a021f]" />
         </div>
 
-        <ReduxProvider>
+        {/* <ReduxProvider> */}
           {children}
-        </ReduxProvider>
+        {/* </ReduxProvider> */}
       </body>
     </html>
   );

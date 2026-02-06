@@ -111,30 +111,6 @@ const SkillsSection = () => {
 
   return (
     <section className="relative py-28 px-4 sm:px-6 lg:px-8  overflow-hidden" id="skills">
-      {/* Floating particles */}
-      {/* {isMounted && [...Array(5)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full bg-purple-500 opacity-10"
-          style={{
-            width: `${100 + (i * 20)}px`,
-            height: `${100 + (i * 20)}px`,
-            left: `${(i * 15) % 100}%`,
-            top: `${(i * 10) % 100}%`,
-            filter: 'blur(40px)'
-          }}
-          animate={{
-            x: [0, i % 2 === 0 ? 50 : -50],
-            y: [0, i % 3 === 0 ? 30 : -30],
-          }}
-          transition={{
-            duration: 20 + (i * 2),
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-        />
-      ))} */}
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section header */}
@@ -199,10 +175,10 @@ const SkillsSection = () => {
               {/* 3D holographic card */}
               <div className="relative h-full transition-all duration-500 group-hover:-translate-y-3">
                 {/* Card surface */}
-                <div className={`relative h-full p-6 rounded-2xl ${skill.bg} backdrop-blur-sm border border-white/10 overflow-hidden`}>
+                <div className={`relative h-full p-4 rounded-2xl ${skill.bg} backdrop-blur-sm border border-white/10 overflow-hidden`}>
                   {/* Floating icon container */}
                   <motion.div 
-                    className="relative w-20 h-20 mx-auto mb-6"
+                    className="relative w-15 h-15 mx-auto mb-6"
                     animate={activeSkill === index ? { 
                       y: [0, -10, 0],
                       rotateY: [0, 180, 360],

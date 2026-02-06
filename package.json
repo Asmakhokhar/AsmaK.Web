@@ -9,12 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@interactjs/react": "^1.10.3",
     "@reduxjs/toolkit": "^2.8.2",
     "animate.css": "^4.1.1",
-    "framer-motion": "^12.16.0",
+    "framer-motion": "^12.23.24",
     "next": "^15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-draggable": "^4.5.0",
+    "react-fast-marquee": "^1.6.5",
     "react-feather": "^2.0.10",
     "react-icons": "^5.5.0",
     "react-intersection-observer": "^9.16.0",
@@ -26,6 +29,8 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4.1.8",
+    "@types/node": "25.2.1",
+    "@types/react": "19.2.13",
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",

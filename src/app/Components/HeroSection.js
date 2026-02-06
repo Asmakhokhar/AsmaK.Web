@@ -1,132 +1,83 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { FiArrowRightCircle } from "react-icons/fi";
+import React from "react";
+import { FiDownload, FiArrowRightCircle } from "react-icons/fi";
+import Button from "./ui/Button"; // your reusable button
 
 export default function HeroSection() {
-  const [loopNum, setLoopNum] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [text, setText] = useState("");
-  const [delta, setDelta] = useState(200);
-  const toRotate = ["Web Developer", "MERN Stack Developer"];
-  const period = 2000;
-
-  // Typing effect
-  useEffect(() => {
-    const ticker = setInterval(() => tick(), delta);
-    return () => clearInterval(ticker);
-  }, [text, delta]);
-
-  const tick = () => {
-    let i = loopNum % toRotate.length;
-    let fullText = toRotate[i];
-    let updatedText = isDeleting
-      ? fullText.substring(0, text.length - 1)
-      : fullText.substring(0, text.length + 1);
-
-    setText(updatedText);
-    if (isDeleting) setDelta((prev) => prev / 2);
-
-    if (!isDeleting && updatedText === fullText) {
-      setIsDeleting(true);
-      setDelta(period);
-    } else if (isDeleting && updatedText === "") {
-      setIsDeleting(false);
-      setLoopNum(loopNum + 1);
-      setDelta(200);
-    }
-  };
-
-  // Counters
-  const [projectsCount, setProjectsCount] = useState(0);
-  const [experienceYears, setExperienceYears] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const duration = 2000;
-    const increment = 20 / (duration / 50);
-
-    const counter = setInterval(() => {
-      start += increment;
-      if (start >= 20) {
-        start = 20;
-        clearInterval(counter);
-      }
-      setProjectsCount(Math.floor(start));
-    }, 50);
-
-    let startExp = 0;
-    const expInc = 2 / (duration / 50);
-
-    const counterExp = setInterval(() => {
-      startExp += expInc;
-      if (startExp >= 2) {
-        startExp = 2;
-        clearInterval(counterExp);
-      }
-      setExperienceYears(Math.floor(startExp));
-    }, 50);
-
-    return () => {
-      clearInterval(counter);
-      clearInterval(counterExp);
-    };
-  }, []);
-
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 text-center bg-transparent">
-      {/* Title Section */}
-      <div className="max-w-3xl mx-auto space-y-6">
+    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-20 pt-30"> 
+      
+      {/* Left Content */}
+      <div className="flex-1 flex flex-col items-start space-y-6 md:pr-10">
+        
+        {/* Opportunities Tag */}
+        <span className="text-sm text-white uppercase tracking-wider border border-white px-3 py-1 rounded-full">
+          Available for Opportunities
+        </span>
+      
+
+        {/* Name */}
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
-          Hi, I’m{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-            Asma Khokhar
-          </span>
-          <br />
-          <span className="inline-flex items-center justify-center mt-2">
-            <span className="text-purple-300">{text}</span>
-            <span className="block w-1 h-8 bg-purple-400 ml-2 animate-pulse"></span>
-          </span>
+         Hi, I’m <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-600">Asma Khokhar</span>
         </h1>
 
-        <p className="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
-          I build scalable web apps with the MERN stack (MongoDB, Express,
-          React, Node.js). Passionate about clean code, intuitive UX, and
-          solving real-world problems.
+        {/* Title */}
+        <h2 className="text-2xl md:text-3xl font-semibold text-white">
+         {" { MERN Stack Developer } "}
+        </h2>
+
+        {/* Description */}
+        <p className="text-gray-400 max-w-lg leading-relaxed">
+          I build scalable and efficient web applications with MongoDB, Express, React, and Node.js. Passionate about clean code, intuitive UX, and delivering real-world solutions.
         </p>
 
-        <button
-          onClick={() => console.log("connect")}
-          className="mt-4 bg-gradient-to-r from-[#9854FF] to-[#442AC6] hover:from-[#442AC6] hover:to-[#9854FF] text-white py-3 px-8 rounded-lg transition-all duration-300 flex items-center justify-center mx-auto shadow-lg"
-        >
-          Hire Me
-          <FiArrowRightCircle className="ml-3 transition-transform group-hover:translate-x-1" />
-        </button>
+        {/* Buttons */}
+        <div className="flex space-x-4 mt-4">
+          <Button 
+            icon={<FiDownload />} 
+            onClick={() => console.log("Download CV")} 
+            download={true}
+          >
+            Download CV
+          </Button>
+          <Button 
+            icon={<FiArrowRightCircle />} 
+            onClick={() => console.log("Hire Me")}
+          >
+            Hire Me
+          </Button>
+        </div>
+
+        {/* Counters */}
+        {/* <div className="grid grid-cols-3 gap-6 mt-10 text-center">
+          <div>
+            <div className="text-3xl md:text-4xl font-bold text-purple-400">20+</div>
+            <div className="text-sm text-gray-400">Projects</div>
+          </div>
+          <div>
+            <div className="text-3xl md:text-4xl font-bold text-purple-400">3+</div>
+            <div className="text-sm text-gray-400">Years Experience</div>
+          </div>
+          <div>
+            <div className="text-3xl md:text-4xl font-bold text-purple-400">100%</div>
+            <div className="text-sm text-gray-400">Passion</div>
+          </div>
+        </div> */}
       </div>
 
-      {/* Counter Section (Below content) */}
-      <div className="grid grid-cols-3 gap-6 mt-12 text-center">
-        <div>
-          <div className="text-3xl md:text-4xl font-bold text-purple-400">
-            {projectsCount}+
-          </div>
-          <div className="text-sm text-gray-400">Projects</div>
-        </div>
-        <div>
-          <div className="text-3xl md:text-4xl font-bold text-purple-400">
-            {experienceYears}+
-          </div>
-          <div className="text-sm text-gray-400">Years Experience</div>
-        </div>
-        <div>
-          <div className="text-3xl md:text-4xl font-bold text-purple-400">
-            100%
-          </div>
-          <div className="text-sm text-gray-400">Passion</div>
+      {/* Right Content - Profile Image */}
+      <div className="flex-1 flex justify-center items-start mt-10 md:mt-0">
+        <div className="relative w-92 h-92 rounded-full shadow-3xl shadow-purple-900/50 border-8 border-white overflow-hidden">
+          <img 
+            src="/hero.png" // your PNG image
+            alt="Asma Khokhar" 
+            className="w-full h-full object-cover"
+          />
+          {/* Optional subtle overlay for glow */}
+          <div className="absolute inset-0 rounded-full ring-2 ring-purple-400/30"></div>
         </div>
       </div>
 
-      {/* Bottom Gradient Line */}
-      <div className="absolute bottom-6 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
     </section>
   );
 }

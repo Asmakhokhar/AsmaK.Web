@@ -1,151 +1,135 @@
-'use client';
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiArrowRight } from 'react-icons/fi';
+"use client";
+import React, { useState, useEffect } from "react";
+import { FiArrowRight } from "react-icons/fi";
 import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
+import Logo from "./Logo";
+import Button from "../ui/Button";
+
+const sections = ["home", "about", "services", "portfolio", "contact"];
 
 const NavbarMain = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [active, setActive] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  /* Detect Active Section */
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      },
+      { rootMargin: "-40% 0px -55% 0px" },
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
   }, []);
 
-  const Links = [
-    { link: 'Home', section: 'home' },
-    { link: 'About', section: 'about' },
-    { link: 'Services', section: 'services' },
-    { link: 'Portfolio', section: 'portfolio' },
-    { link: 'Contact', section: 'contact' },
+  /* Scroll Background */
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Home", id: "home" },
+    { name: "About", id: "about" },
+    { name: "Services", id: "services" },
+    { name: "Portfolio", id: "portfolio" },
+    { name: "Contact", id: "contact" },
   ];
 
   return (
     <>
-      {/* Desktop Navbar */}
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2 bg-gray-900/80 backdrop-blur-md border-b border-purple-900/20' : 'py-4 bg-transparent'}`}
+      <nav
+        className={`fixed w-full top-0 z-50 transition-colors duration-300
+         ${
+           scrolled
+             ? "bg-gray-900/80 backdrop-blur-md shadow-[0_2px_12px_rgba(0,0,0,0.25)]"
+             : "bg-transparent"
+         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo */}
-            <Link href="/" className="flex-shrink-0">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="flex items-center"
-              >
-                <span className="text-3xl font-bold text-white">
-                  Asma <span className="text-purple-400">Khokhar</span>
-                </span>
-              </motion.div>
-            </Link>
+        <div
+          className={`max-w-7xl mx-auto px-4 flex items-center justify-between h-16
+    ${scrolled ? "py-2" : "py-4"}`}
+        >
+          {/* LOGO */}
+          <a href="#home">
+            <Logo />
+          </a>
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center space-x-8">
-              <ul className="flex space-x-8">
-                {Links.map((item, index) => {
-                  const isActive = pathname === `/${item.section}`;
-                  return (
-                    <li key={index} className="relative group">
-                      <Link 
-                        href={`/${item.section}`} 
-                        className={`relative px-1 py-2 text-sm font-medium transition-colors duration-300 ${isActive ? 'text-purple-300' : 'text-gray-300 hover:text-white'}`}
-                      >
-                        {item.link}
-                        {isActive && (
-                          <motion.span 
-                            className="absolute left-0 bottom-0 w-full h-0.5 bg-purple-400"
-                            layoutId="navUnderline"
-                            transition={{ duration: 0.3 }}
-                          />
-                        )}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-
-              {/* Connect Button */}
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+          {/* DESKTOP */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                className={`relative text-sm font-medium transition-colors
+                ${active === link.id ? "text-purple-300" : "text-gray-300 hover:text-white"}`}
               >
-                <Link 
-                  href="#contact" 
-                  className="flex items-center px-6 py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-sm font-medium shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
-                >
-                  Let&#39;s Connect
-                  <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </motion.div>
-            </div>
+                {link.name}
 
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button
-                className="p-2 rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <GiCrossMark className="h-6 w-6 text-purple-400" />
-                ) : (
-                  <GiHamburgerMenu className="h-6 w-6" />
+                {active === link.id && (
+                  <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-purple-400 rounded" />
                 )}
-              </button>
-            </div>
-          </div>
-        </div>
-      </motion.nav>
+              </a>
+            ))}
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed top-16 inset-x-0 z-40 md:hidden bg-gray-900/95 backdrop-blur-lg border-b border-purple-900/20"
+            <Button
+              href="#contact"
+              icon={<FiArrowRight />}
+              onClick={() => setOpen(false)}
+            >
+              Let's Connect
+            </Button>
+          </div>
+
+          {/* MOBILE BUTTON */}
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-gray-300 cursor-pointer"
           >
-            <div className="px-2 pt-2 pb-4 space-y-1 sm:px-3">
-              {Links.map((item, index) => {
-                const isActive = pathname === `/${item.section}`;
-                return (
-                  <Link
-                    key={index}
-                    href={`/${item.section}`}
-                    className={`block px-3 py-3 rounded-md text-base font-medium ${isActive ? 'bg-purple-900/30 text-purple-300' : 'text-gray-300 hover:bg-gray-800 hover:text-white'}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.link}
-                  </Link>
-                );
-              })}
-              <div className="px-3 pt-2">
-                <Link
-                  href="#contact"
-                  className="block w-full px-4 py-2 text-center rounded-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium shadow-md"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Let&#39;s Connect
-                </Link>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {open ? <GiCrossMark size={22} /> : <GiHamburgerMenu size={22} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* MOBILE MENU */}
+      <div
+        className={`md:hidden fixed top-[64px] w-full bg-gray-900/95 backdrop-blur-md z-40 shadow-2xl
+        transition-all duration-300 overflow-hidden
+        ${open ? "max-h-[400px] border-b border-purple-900/30" : "max-h-0"}`}
+      >
+        <div className="px-6 py-4 flex flex-col gap-4">
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={`#${link.id}`}
+              onClick={() => setOpen(false)}
+              className={`text-base ${active === link.id ? "text-purple-300" : "text-gray-300"}`}
+            >
+              {link.name}
+            </a>
+          ))}
+
+          <a
+            href="#contact"
+            onClick={() => setOpen(false)}
+            className="text-center py-2 rounded-full bg-gradient-to-r from-purple-600 to-indigo-600"
+          >
+            Let's Connect
+          </a>
+        </div>
+      </div>
     </>
   );
 };
 
-export default NavbarMain;    
+export default NavbarMain;

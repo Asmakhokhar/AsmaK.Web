@@ -1,22 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
 @import "tailwindcss";
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
+
 
 /* Your other CSS here */
 
 :root {
   --fontfamily: "Josefin", sans-serif;
-   --bg-start: #050a18;
 }
 
-html, body {
+/* html, body {
   background-color: var(--bg-start);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 * {
   scroll-behavior: smooth;
@@ -38,7 +35,7 @@ img {
   height: auto;
 }
 
-@keyframes float {
+/* @keyframes float {
   0%,
   100% {
     transform: translateY(0) translateX(0);
@@ -61,4 +58,4 @@ img {
 }
 .animate-float-delay {
   animation: float-delay 15s ease-in-out infinite;
-}
+} */

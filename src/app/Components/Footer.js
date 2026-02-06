@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook, FaArrowUp } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useEffect, useState, useMemo } from 'react';
+import Logo from './Navbar/Logo';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -133,9 +134,7 @@ export default function Footer() {
             {/* Brand Column */}
             <motion.div variants={itemVariants} className="space-y-6">
               <div className="flex items-center gap-3">
-                <div className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-600">
-                  Asma Khokhar
-                </div>
+                <Logo className="h-8 w-auto" />
               </div>
               <p className="text-purple-100/80 text-lg leading-relaxed">
                 Crafting exceptional digital experiences that drive results and create lasting impressions.
@@ -186,7 +185,7 @@ export default function Footer() {
             </motion.div>
 
             {/* Services Column */}
-            <motion.div variants={itemVariants} className="space-y-6">
+            <div variants={itemVariants} className="space-y-6">
               <h3 className="text-xl font-semibold text-white">Services</h3>
               <ul className="space-y-3 text-purple-100/80">
                 <li className="hover:text-white transition-colors duration-300">Full Stack Development</li>
@@ -194,7 +193,7 @@ export default function Footer() {
                 <li className="hover:text-white transition-colors duration-300">Responsive Web Design</li>
                 <li className="hover:text-white transition-colors duration-300">Technical Consulting</li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* Newsletter Column */}
             <motion.div variants={itemVariants} className="space-y-6">
