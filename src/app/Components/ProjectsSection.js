@@ -43,7 +43,7 @@ const projects = [
     category: "Frontend",
     company: "Upwork Client",
     stack: "HTML, CSS, JS",
-    image: "./res.png",
+    image: "./res.PNG",
     live: "https://feliciano-restaurant-website.vercel.app/",
     github: "#",
   },
