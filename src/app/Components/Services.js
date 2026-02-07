@@ -7,9 +7,11 @@ import {
   FiServer,
   FiDatabase,
   FiShield,
+  FiArrowRightCircle,
 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import SectionTitle from "./ui/SectionTitle";
+import Button from "./ui/Button";
 
 export default function ServicesSection() {
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -89,8 +91,6 @@ export default function ServicesSection() {
           <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
             <div className="absolute inset-0 bg-[url('/grid.svg')] bg-[length:100px_100px] opacity-10"></div>
           </div>
-          <div className="absolute -top-20 -left-20 w-64 h-64 bg-purple-600 rounded-full filter blur-3xl opacity-10 animate-float"></div>
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-indigo-600 rounded-full filter blur-3xl opacity-10 animate-float-delay"></div>
         </>
       )}
 
@@ -202,33 +202,18 @@ export default function ServicesSection() {
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isMounted ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="mt-16 text-center"
-        >
-          <motion.p
-            className="text-lg text-gray-300 mb-6"
-            whileHover={{ scale: 1.01 }}
+        <div className="mt-12 text-center">
+          <h2 className="text-xl md:text-2xl font-semibold text-white mb-4">
+            Ready to elevate your project?
+          </h2>
+          <Button 
+            icon={<FiArrowRightCircle />} 
+            onClick={() => console.log("Contact Me")}
           >
-            Need something custom? Let&#39;s discuss your project.
-          </motion.p>
-          <motion.button
-            whileHover={{
-              scale: 1.03,
-              boxShadow: "0 10px 25px -5px rgba(167, 139, 250, 0.4)",
-            }}
-            whileTap={{ scale: 0.97 }}
-            className="px-6 py-3 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 text-white font-medium shadow-lg transition-all relative overflow-hidden"
-          >
-            <span className="relative z-10">Schedule a Call</span>
-            <motion.span
-              className="absolute inset-0 bg-gradient-to-r from-purple-600 to-indigo-600 opacity-0 hover:opacity-100 transition-opacity duration-300"
-              aria-hidden="true"
-            />
-          </motion.button>
-        </motion.div>
+            Contact Me
+          </Button>
+        
+        </div>
       </div>
     </section>
   );

@@ -26,18 +26,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <title>Asma_Dev | Full Stack Developer</title>
-      </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased relative min-h-screen text-white font-body`}
+      <body className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased relative min-h-screen text-white font-body`}
       >
        {/* Fixed full background */}
         <div className="fixed inset-0 -z-10">
           <div className="absolute inset-0 bg-gradient-to-br from-[#581789] via-[#3b0f62] to-[#1a021f]" />
         </div>
 
-        {/* <ReduxProvider> */}
+        {/* <ReduxProvider>/ */}
           {children}
         {/* </ReduxProvider> */}
       </body>

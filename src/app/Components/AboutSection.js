@@ -15,7 +15,7 @@ const skills = [
   {
     icon: <FaNodeJs size={24} />,
     title: "Backend Development",
-    description: "Python, FastAPI, Node.js",
+    description: "Node.js, Express.js\nREST APIs, JWT Authentication",
     gradient: "from-green-600 to-blue-600",
     color: "text-purple-400",
   },
@@ -48,6 +48,12 @@ const experiences = [
     duration: "2025 - Present",
     details: "Worked with international clients on full-stack projects, integrating APIs and building responsive UIs.",
   },
+  {
+    role: "MERN Stack Developer",
+    company: "Freelance",
+    duration: "2023 - Present",
+    details: "Built custom web solutions for clients, including e-commerce sites and portfolio websites, with a focus on performance and user experience.",
+  },
 ];
 
 const certificates = [
@@ -58,11 +64,16 @@ const certificates = [
   },
   {
     title: "MERN Stack Professional",
-    issuer: "Dev Castle Institute",
+    issuer: "Dev Castle IT Institute",
     year: "2024",
   },
   {
     title: "AI & Automation Essentials",
+    issuer: "Coursera",
+    year: "2025",
+  },
+  {
+    title: "Advanced Backend Development, API Testing, and Deployment",
     issuer: "Coursera",
     year: "2025",
   },

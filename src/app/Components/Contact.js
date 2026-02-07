@@ -1,15 +1,28 @@
 "use client";
-import { useState, useRef } from "react";
-import { motion, useMotionTemplate, useMotionValue, animate } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  animate,
+} from "framer-motion";
 import { FiUser, FiMail, FiPhone, FiMessageSquare } from "react-icons/fi";
-import { FaPaperPlane, FaCheck, FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import {
+  FaPaperPlane,
+  FaCheck,
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+} from "react-icons/fa";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: ""
+    message: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -17,15 +30,29 @@ const ContactForm = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const formRef = useRef(null);
 
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // 3D tilt effect
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  
+
   const handleMouseMove = (e) => {
-    const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
+    const { left, top, width, height } =
+      e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - left);
     mouseY.set(e.clientY - top);
-    animate(formRef.current, { rotateX: -(e.clientY - top - height/2)/20, rotateY: (e.clientX - left - width/2)/20 }, { duration: 0.5 });
+    animate(
+      formRef.current,
+      {
+        rotateX: -(e.clientY - top - height / 2) / 20,
+        rotateY: (e.clientX - left - width / 2) / 20,
+      },
+      { duration: 0.5 },
+    );
   };
 
   const handleMouseLeave = () => {
@@ -34,15 +61,16 @@ const ContactForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-    if (errors[name]) setErrors(prev => ({ ...prev, [name]: "" }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Required";
     if (!formData.email.trim()) newErrors.email = "Required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Invalid email";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email))
+      newErrors.email = "Invalid email";
     if (!formData.message.trim()) newErrors.message = "Required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -53,9 +81,9 @@ const ContactForm = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
     } finally {
@@ -64,82 +92,96 @@ const ContactForm = () => {
   };
 
   const socialLinks = [
-    { icon: <FaGithub />, url: "https://github.com/Asmakhokhar", color: "bg-gray-800 hover:bg-gray-700" },
-    { icon: <FaLinkedin />, url: "https://www.linkedin.com/in/asma-ismail-28445a2a4/", color: "bg-blue-600 hover:bg-blue-700" },
-    { icon: <FaTwitter />, url: "https://x.com/Asma_Khokhar_", color: "bg-black hover:bg-gray-800" },
-    { icon: <FaInstagram />, url: "https://www.instagram.com/asmak.web/", color: "bg-gradient-to-tr from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600" },
-    { icon: <FaFacebook />, url: "https://web.facebook.com/profile.php?id=61556637118609", color: "bg-blue-700 hover:bg-blue-800" },
+    {
+      icon: <FaGithub />,
+      url: "https://github.com/Asmakhokhar",
+      color: "bg-gray-800 hover:bg-gray-700",
+    },
+    {
+      icon: <FaLinkedin />,
+      url: "https://www.linkedin.com/in/asma-ismail-28445a2a4/",
+      color: "bg-blue-600 hover:bg-blue-700",
+    },
+    {
+      icon: <FaTwitter />,
+      url: "https://x.com/Asma_Khokhar_",
+      color: "bg-black hover:bg-gray-800",
+    },
+    {
+      icon: <FaInstagram />,
+      url: "https://www.instagram.com/asmak.web/",
+      color:
+        "bg-gradient-to-tr from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600",
+    },
+    {
+      icon: <FaFacebook />,
+      url: "https://web.facebook.com/profile.php?id=61556637118609",
+      color: "bg-blue-700 hover:bg-blue-800",
+    },
   ];
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4  overflow-hidden py-20 border-none">
       {/* Floating particles background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute rounded-full bg-purple-500 opacity-10"
-            initial={{ 
-              x: Math.random() * 100,
-              y: Math.random() * 100,
-              width: Math.random() * 300 + 100,
-              height: Math.random() * 300 + 100,
-              filter: 'blur(60px)'
-            }}
-            animate={{
-              x: [null, (Math.random() - 0.5) * 100],
-              y: [null, (Math.random() - 0.5) * 100],
-            }}
-            transition={{
-              duration: 10 + Math.random() * 20,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+        {isMounted &&
+          [...Array(8)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full bg-purple-500 opacity-10"
+              initial={{
+                x: Math.random() * 100,
+                y: Math.random() * 100,
+                width: Math.random() * 300 + 100,
+                height: Math.random() * 300 + 100,
+                filter: "blur(60px)",
+              }}
+              animate={{
+                x: [null, (Math.random() - 0.5) * 100],
+                y: [null, (Math.random() - 0.5) * 100],
+              }}
+              transition={{
+                duration: 10 + Math.random() * 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            />
+          ))}
       </div>
 
       <div className="relative z-10 w-full max-w-6xl">
-        {/* Decorative floating orb */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 0.3, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="absolute -top-40 -left-40 w-80 h-80 bg-purple-500 rounded-full filter blur-[120px] pointer-events-none"
-        />
-
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          
           <motion.div
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="text-center mb-20"
-                  >
-                    <div className="inline-flex items-center justify-center relative">
-                      <motion.h2 
-                        className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
-                      >
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Let&#39;s Build Something </span> Amazing
-                      </motion.h2>
-                      
-                    </div>
-                    <motion.p 
-                      className="text-xl text-gray-300 max-w-3xl mx-auto"
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      Technologies I&#39;ve mastered through years of professional experience and personal projects
-                    </motion.p>
-                  </motion.div>
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <div className="inline-flex items-center justify-center relative">
+              <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+                  Let&#39;s Build Something{" "}
+                </span>{" "}
+                Amazing
+              </motion.h2>
+            </div>
+            <motion.p
+              className="text-xl text-gray-300 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+            >
+              Technologies I&#39;ve mastered through years of professional
+              experience and personal projects
+            </motion.p>
+          </motion.div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -151,13 +193,18 @@ const ContactForm = () => {
             className="space-y-8"
           >
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">Connect Directly</h3>
+              <h3 className="text-2xl font-bold text-white">
+                Connect Directly
+              </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-purple-500 transition-all">
                   <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
                     <FiMail className="w-6 h-6" />
                   </div>
-                  <a href="mailto:asma.khokharr@gmail.com" className="text-white hover:text-purple-300 transition-colors text-lg">
+                  <a
+                    href="mailto:asma.khokharr@gmail.com"
+                    className="text-white hover:text-purple-300 transition-colors text-lg"
+                  >
                     asma.khokharr@gmail.com
                   </a>
                 </div>
@@ -165,7 +212,10 @@ const ContactForm = () => {
                   <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
                     <FiPhone className="w-6 h-6" />
                   </div>
-                  <a href="tel:+923707638774" className="text-white hover:text-purple-300 transition-colors text-lg">
+                  <a
+                    href="tel:+923707638774"
+                    className="text-white hover:text-purple-300 transition-colors text-lg"
+                  >
                     +92 370 7638774
                   </a>
                 </div>
@@ -173,7 +223,9 @@ const ContactForm = () => {
             </div>
 
             <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">Follow My Journey</h3>
+              <h3 className="text-2xl font-bold text-white">
+                Follow My Journey
+              </h3>
               <div className="flex flex-wrap gap-3">
                 {socialLinks.map((social, i) => (
                   <motion.a
@@ -228,9 +280,12 @@ const ContactForm = () => {
                 >
                   <FaCheck className="text-green-400 text-3xl" />
                 </motion.div>
-                <h3 className="text-2xl font-bold text-green-400 mb-2">Message Sent!</h3>
+                <h3 className="text-2xl font-bold text-green-400 mb-2">
+                  Message Sent!
+                </h3>
                 <p className="text-gray-300 mb-6">
-                  Thanks for reaching out! I&#39;ll get back to you within 24 hours.
+                  Thanks for reaching out! I&#39;ll get back to you within 24
+                  hours.
                 </p>
                 <button
                   onClick={() => setSubmitSuccess(false)}
@@ -246,7 +301,9 @@ const ContactForm = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
                 >
-                  <label className="block text-sm font-medium text-purple-300 mb-2">Your Name</label>
+                  <label className="block text-sm font-medium text-purple-300 mb-2">
+                    Your Name
+                  </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400">
                       <FiUser className="w-5 h-5" />
@@ -276,7 +333,9 @@ const ContactForm = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1 }}
                 >
-                  <label className="block text-sm font-medium text-purple-300 mb-2">Email Address</label>
+                  <label className="block text-sm font-medium text-purple-300 mb-2">
+                    Email Address
+                  </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400">
                       <FiMail className="w-5 h-5" />
@@ -306,7 +365,9 @@ const ContactForm = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.1 }}
                 >
-                  <label className="block text-sm font-medium text-purple-300 mb-2">Phone (Optional)</label>
+                  <label className="block text-sm font-medium text-purple-300 mb-2">
+                    Phone (Optional)
+                  </label>
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-purple-400">
                       <FiPhone className="w-5 h-5" />
@@ -327,7 +388,9 @@ const ContactForm = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2 }}
                 >
-                  <label className="block text-sm font-medium text-purple-300 mb-2">Your Message</label>
+                  <label className="block text-sm font-medium text-purple-300 mb-2">
+                    Your Message
+                  </label>
                   <div className="relative">
                     <div className="absolute top-3 left-3 text-purple-400">
                       <FiMessageSquare className="w-5 h-5" />
@@ -364,9 +427,25 @@ const ContactForm = () => {
                   >
                     {isSubmitting ? (
                       <>
-                        <svg className="animate-spin -ml-1 mr-2 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        <svg
+                          className="animate-spin -ml-1 mr-2 h-5 w-5 text-white"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                        >
+                          <circle
+                            className="opacity-25"
+                            cx="12"
+                            cy="12"
+                            r="10"
+                            stroke="currentColor"
+                            strokeWidth="4"
+                          ></circle>
+                          <path
+                            className="opacity-75"
+                            fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                          ></path>
                         </svg>
                         Sending...
                       </>

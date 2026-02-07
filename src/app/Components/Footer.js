@@ -107,7 +107,7 @@ export default function Footer() {
       <footer className="relative overflow-hidden bg-gray-900 text-white pt-20 pb-12 px-4 sm:px-6 lg:px-8">
         {/* Stable background elements */}
         <div className="absolute inset-0 overflow-hidden">
-          {particles.map((particle) => (
+          {isClient && particles.map((particle) => (
             <div
               key={particle.id}
               className="absolute rounded-full bg-purple-500"

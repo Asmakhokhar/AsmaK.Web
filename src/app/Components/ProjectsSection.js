@@ -1,137 +1,153 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/pagination";
-import { FiArrowUpRight } from "react-icons/fi";
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
+import SectionTitle from "./ui/SectionTitle";
+import GithubCTA from "./ui/GithubCTA";
+
+const TABS = ["All", "Frontend", "Web Application"];
 
 const projects = [
   {
-    id: "01",
-    category: "Web",
-    title: "IvoLuck Website",
-    tech: "Next.JS, Tailwind, Node.JS, GSAP, Swiper Js",
-    image: "/dash.PNG",
+    id: 1,
+    title: "Real Estate Leads Dashboard",
+    category: "Web Application",
+    company: "Machine Minds",
+    stack: "Next.js, Tailwind, Node.js, MongoDB",
+    image: "./user.PNG",
+    live: "https://www.fourteen.ae/auth/login",
+    github: "#",
   },
   {
-    id: "02",
-    category: "Web",
+    id: 2,
+    title: "Involuck Web Application",
+    category: "Web Application",
+    company: "Involuck",
+    stack: "React, Tailwind",
+    image: "./3.PNG",
+    live: "https://involuck.vercel.app/",
+    github: "#",
+  },
+  {
+    id: 3,
+    title: "ChatBot Pro Web Application",
+    category: "Web Application",
+    company: "Neonecy",
+    stack: "React, Tailwind, Node.js, MongoDB, Ai Integration",
+    image: "./chat.PNG",
+    live: "https://smart-chat-finale.vercel.app/manager-dashboard/manager-bots",
+    github: "#",
+  },
+  {
+    id: 4,
+    title: "Restaurant Booking Website",
+    category: "Frontend",
+    company: "Upwork Client",
+    stack: "HTML, CSS, JS",
+    image: "./res.png",
+    live: "https://feliciano-restaurant-website.vercel.app/",
+    github: "#",
+  },
+  {
+    id: 5,
     title: "Deviconic Company Website",
-    tech: "React.JS, Tailwind, Node.JS, GSAP, Swiper Js",
-    image: "/dev.PNG",
-  },
-  {
-    id: "03",
-    category: "Web",
-    title: "Techxicon Company Site",
-    tech: "Next.JS, Tailwind, Node.JS, GSAP, Swiper Js and Figma",
-    image: "/tech.PNG",
-  },
-  {
-    id: "04",
-    category: "Web",
-    title: "Feliciano Restaurant Website",
-    tech: "HTML, CSS, JavaScript, GSAP, Swiper Js and Figma",
-    image: "/res.PNG",
-  },
-  {
-    id: "05",
-    category: "Web",
-    title: "Digital Agency Website",
-    tech: "React.JS, CSS, GSAP, Swiper Js and Figma",
-    image: "/agen.PNG",
+    category: "Frontend",
+    company: "Deviconic",
+    stack: "React, Tailwind",
+    image: "./dev.PNG",
+    live: "https://www.deviconic.com/",
+    github: "#",
   },
 ];
 
 export default function ProjectsSection() {
-  const [isClient, setIsClient] = useState(false);
+  const [activeTab, setActiveTab] = useState("All");
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    // Prevent hydration mismatch
-    return null;
-  }
+  const filtered =
+    activeTab === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeTab);
 
   return (
-    <section id="projects" className="relative py-20 text-white overflow-hidden">
-      <div className="text-center mb-12">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6"
-        >
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-            I make
-          </span>{" "}
-          Incredible Websites
-        </motion.h2>
-      </div>
+    <section id="projects" className="py-24 px-4">
+      <div className="max-w-7xl mx-auto">
+        <SectionTitle
+          title={<>My <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Projects</span></>}
+          description="Selected work demonstrating real-world problem solving and production ready development"
+        />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10">
-        <Swiper
-          modules={[Autoplay, Pagination]}
-          spaceBetween={40}
-          slidesPerView={1}
-          breakpoints={{
-            768: { slidesPerView: 2 },
-            1024: { slidesPerView: 3 },
-          }}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-          }}
-          pagination={{ clickable: true, dynamicBullets: true }}
-          className="pb-12"
-        >
-          {projects.map((project) => (
-            <SwiperSlide key={project.id}>
-              <div className="rounded-3xl bg-gray-900/50 backdrop-blur-md border border-gray-800 p-6 flex flex-col justify-between h-[460px] shadow-[0_0_30px_rgba(72,61,139,0.2)] hover:shadow-[0_0_40px_rgba(128,90,213,0.4)] transition-all duration-500">
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <span className="text-3xl font-bold text-gray-300">
-                      {project.id}
-                    </span>
-                    <span className="text-sm uppercase text-gray-400">
-                      {project.category}
-                    </span>
-                  </div>
+        {/* Tabs */}
+        <div className="flex justify-center mt-10 mb-12">
+          <div className="flex gap-2 p-2 rounded-xl bg-white/5 backdrop-blur border border-white/10">
+            {TABS.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`px-5 py-2 rounded-lg text-sm transition-all duration-200 ${
+                  activeTab === tab
+                    ? "bg-purple-500 text-white"
+                    : "text-gray-300 hover:text-white hover:bg-white/10"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+        </div>
 
-                  <h3 className="text-2xl font-semibold mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-2">
-                    <span className="font-semibold text-gray-300">
-                      Technologies used:
-                    </span>{" "}
-                    {project.tech}
-                  </p>
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.map((project) => (
+            <div
+              key={project.id}
+              className="group rounded-2xl border border-white/10 bg-white/5 backdrop-blur overflow-hidden hover:border-purple-400/40 transition-all duration-300"
+            >
+              {/* Image */}
+              <div className="relative h-48 w-full overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col gap-3">
+                <div className="flex justify-between items-center text-xs text-gray-400">
+                  <span>{project.category}</span>
+                  <span>{project.company}</span>
                 </div>
 
-                <div className="relative group mt-4">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover rounded-2xl transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute bottom-4 right-4 w-8 h-8 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                    <FiArrowUpRight className="text-white text-lg" />
-                  </div>
+                <h3 className="text-lg font-semibold text-white">
+                  {project.title}
+                </h3>
+
+                <p className="text-sm text-gray-400">{project.stack}</p>
+
+                {/* Buttons */}
+                <div className="flex gap-3 mt-3">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-gradient-to-r from-purple-500 to-indigo-500 text-white hover:bg-purple-500/30 transition"
+                  >
+                    Live <FiExternalLink />
+                  </a>
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    className="flex items-center gap-2 text-sm px-4 py-2 rounded-lg bg-white/10 text-gray-200 hover:bg-white/20 transition"
+                  >
+                    Code <FiGithub />
+                  </a>
                 </div>
               </div>
-            </SwiperSlide>
+            </div>
           ))}
-        </Swiper>
+        </div>
+        {/* CTA */}
+        <GithubCTA />
+       
       </div>
-
-      {/* floating glow removed from SSR to prevent mismatch */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
-      <div className="absolute -bottom-20 -right-20 w-72 h-72 bg-cyan-500/20 rounded-full blur-3xl"></div>
     </section>
   );
 }
