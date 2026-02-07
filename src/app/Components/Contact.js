@@ -16,6 +16,7 @@ import {
   FaInstagram,
   FaFacebook,
 } from "react-icons/fa";
+import SectionTitle from "./ui/SectionTitle";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -121,7 +122,7 @@ const ContactForm = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4  overflow-hidden py-20 border-none">
+    <div id="contact" className="min-h-screen flex items-center justify-center p-4  overflow-hidden py-20 border-none">
       {/* Floating particles background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {isMounted &&
@@ -151,38 +152,18 @@ const ContactForm = () => {
       </div>
 
       <div className="relative z-10 w-full max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-20"
-          >
-            <div className="inline-flex items-center justify-center relative">
-              <motion.h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-                  Let&#39;s Build Something{" "}
-                </span>{" "}
-                Amazing
-              </motion.h2>
-            </div>
-            <motion.p
-              className="text-xl text-gray-300 max-w-3xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              Technologies I&#39;ve mastered through years of professional
-              experience and personal projects
-            </motion.p>
-          </motion.div>
-        </motion.div>
+           {/* Section Header */}
+      <SectionTitle
+        title={
+          <>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+              Let's Build Something 
+            </span>{" "}
+            Amazing Together
+          </>
+        }
+        // description="Professional growth-focused overview highlighting skills, experience, and certifications."
+      />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Social/Contact Info */}
@@ -198,23 +179,23 @@ const ContactForm = () => {
               </h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-purple-500 transition-all">
-                  <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
+                  <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400">
                     <FiMail className="w-6 h-6" />
                   </div>
                   <a
                     href="mailto:asma.khokharr@gmail.com"
-                    className="text-white hover:text-purple-300 transition-colors text-lg"
+                    className="text-white hover:text-purple-300 transition-colors text-md"
                   >
                     asma.khokharr@gmail.com
                   </a>
                 </div>
                 <div className="flex items-center gap-4 p-4 bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700 hover:border-purple-500 transition-all">
-                  <div className="p-3 bg-purple-500/10 rounded-lg text-purple-400">
+                  <div className="p-2 bg-purple-500/10 rounded-lg text-purple-400">
                     <FiPhone className="w-6 h-6" />
                   </div>
                   <a
                     href="tel:+923707638774"
-                    className="text-white hover:text-purple-300 transition-colors text-lg"
+                    className="text-white hover:text-purple-300 transition-colors text-md"
                   >
                     +92 370 7638774
                   </a>
@@ -222,23 +203,21 @@ const ContactForm = () => {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-white">
+            <div>
+              <h3 className="text-xl font-semibold text-white mb-4">
                 Follow My Journey
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {socialLinks.map((social, i) => (
-                  <motion.a
+              <div className="flex gap-3 flex-wrap">
+                {socialLinks.map((link, i) => (
+                  <a
                     key={i}
-                    href={social.url}
+                    href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ y: -5, scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`${social.color} w-12 h-12 rounded-full flex items-center justify-center text-white text-xl transition-all`}
+                    className="w-11 h-11 rounded-lg bg-white/5 border border-purple-500/30 backdrop-blur-md flex items-center justify-center text-purple-300 hover:bg-purple-500/20 transition"
                   >
-                    {social.icon}
-                  </motion.a>
+                    {link.icon}
+                  </a>
                 ))}
               </div>
             </div>
@@ -256,7 +235,7 @@ const ContactForm = () => {
               perspective: "1000px",
               transformStyle: "preserve-3d",
             }}
-            className="bg-gray-900/50 backdrop-blur-md p-8 rounded-2xl border border-gray-800 shadow-2xl relative overflow-hidden"
+            className="bg-gray-900/50 backdrop-blur-md p-6 rounded-2xl border border-gray-800 shadow-2xl relative overflow-hidden w-full max-w-md mx-auto"
           >
             {/* Animated gradient border */}
             <motion.div
@@ -295,7 +274,7 @@ const ContactForm = () => {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -313,7 +292,7 @@ const ContactForm = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-gray-800/30 border ${errors.name ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
+                      className={`w-full pl-10 pr-4 py-2.5 bg-gray-800/30 border ${errors.name ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
                       placeholder="Asma Khokhar"
                     />
                     {errors.name && (
@@ -345,7 +324,7 @@ const ContactForm = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      className={`w-full pl-10 pr-4 py-3 bg-gray-800/30 border ${errors.email ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
+                      className={`w-full pl-10 pr-4 py-2.5 bg-gray-800/30 border ${errors.email ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
                       placeholder="asma@example.com"
                     />
                     {errors.email && (
@@ -377,7 +356,7 @@ const ContactForm = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="w-full pl-10 pr-4 py-3 bg-gray-800/30 border border-gray-700 hover:border-purple-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
+                      className="w-full pl-10 pr-4 py-2.5 bg-gray-800/30 border border-gray-700 hover:border-purple-500 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300"
                       placeholder="+92 300 1234567"
                     />
                   </div>
@@ -399,8 +378,8 @@ const ContactForm = () => {
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
-                      rows={5}
-                      className={`w-full pl-10 pr-4 py-3 bg-gray-800/30 border ${errors.message ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
+                      rows={4}
+                      className={`w-full pl-10 pr-4 py-2.5 bg-gray-800/30 border ${errors.message ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
                       placeholder="I'd love to build a..."
                     />
                     {errors.message && (
@@ -423,7 +402,7 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full flex items-center justify-center gap-2 px-6 py-4 font-medium rounded-lg transition-all duration-300 ${isSubmitting ? "bg-purple-800 cursor-not-allowed" : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-purple-500/30"}`}
+                    className={`w-full flex items-center justify-center gap-2 px-6 py-3 font-medium rounded-lg transition-all duration-300 ${isSubmitting ? "bg-purple-800 cursor-not-allowed" : "bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-purple-500/30"}`}
                   >
                     {isSubmitting ? (
                       <>

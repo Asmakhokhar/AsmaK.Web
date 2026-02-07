@@ -5,7 +5,7 @@ import { GiHamburgerMenu, GiCrossMark } from "react-icons/gi";
 import Logo from "./Logo";
 import Button from "../ui/Button";
 
-const sections = ["home", "about", "services", "portfolio", "contact"];
+const sections = ["home", "about", "skills", "services", "projects", "contact"];
 
 const NavbarMain = () => {
   const [active, setActive] = useState("home");
@@ -41,8 +41,9 @@ const NavbarMain = () => {
   const navLinks = [
     { name: "Home", id: "home" },
     { name: "About", id: "about" },
+    { name: "Skills", id: "skills" },
     { name: "Services", id: "services" },
-    { name: "Portfolio", id: "portfolio" },
+    { name: "Portfolio", id: "projects" },
     { name: "Contact", id: "contact" },
   ];
 

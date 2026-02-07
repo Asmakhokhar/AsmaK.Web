@@ -5,7 +5,7 @@ import Button from "./ui/Button"; // your reusable button
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-20 pt-30"> 
+    <section id="home" className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-20 pt-30"> 
       
       {/* Left Content */}
       <div className="flex-1 flex flex-col items-start space-y-6 md:pr-10">
@@ -34,8 +34,8 @@ export default function HeroSection() {
         {/* Buttons */}
         <div className="flex space-x-4 mt-4">
           <Button 
+            href="/Asma Ismail khokhar.pdf"
             icon={<FiDownload />} 
-            onClick={() => console.log("Download CV")} 
             download={true}
           >
             Download CV

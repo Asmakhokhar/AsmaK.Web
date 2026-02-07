@@ -84,7 +84,7 @@ export default function ServicesSection() {
   const hoverBackground = useMotionTemplate`radial-gradient(300px circle at ${mouseX}px ${mouseY}px, rgba(139, 92, 246, 0.3), transparent 80%)`;
 
   return (
-    <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section id="services" className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Animated background elements */}
       {isMounted && (
         <>
