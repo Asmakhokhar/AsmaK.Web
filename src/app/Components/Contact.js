@@ -17,6 +17,7 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 import SectionTitle from "./ui/SectionTitle";
+import emailjs from "@emailjs/browser"
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -30,11 +31,23 @@ const ContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const formRef = useRef(null);
+  const tiltRef = useRef(null);
 
   const [isMounted, setIsMounted] = useState(false);
 
+  const SERVICE_ID = process.env.NEXT_PUBLIC_EMAIL_SERVICE_ID;
+  const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAIL_TEMPLATE_ID;
+  const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY;
+
   useEffect(() => {
     setIsMounted(true);
+    if (process.env.NODE_ENV === "development") {
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        console.warn(
+          "EmailJS environment variables are not set. Please check your .env.local file and restart the server.",
+        );
+      }
+    }
   }, []);
 
   // 3D tilt effect
@@ -47,7 +60,7 @@ const ContactForm = () => {
     mouseX.set(e.clientX - left);
     mouseY.set(e.clientY - top);
     animate(
-      formRef.current,
+      tiltRef.current,
       {
         rotateX: -(e.clientY - top - height / 2) / 20,
         rotateY: (e.clientX - left - width / 2) / 20,
@@ -57,7 +70,7 @@ const ContactForm = () => {
   };
 
   const handleMouseLeave = () => {
-    animate(formRef.current, { rotateX: 0, rotateY: 0 }, { duration: 0.5 });
+    animate(tiltRef.current, { rotateX: 0, rotateY: 0 }, { duration: 0.5 });
   };
 
   const handleChange = (e) => {
@@ -81,12 +94,21 @@ const ContactForm = () => {
     e.preventDefault();
     if (!validate()) return;
 
+    if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+      console.error("Cannot send email: Missing EmailJS environment variables. Check .env.local");
+      alert("Configuration Error: EmailJS environment variables are missing. Please check your .env.local file and restart the server.");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY);
       setSubmitSuccess(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
+      if (formRef.current) formRef.current.reset();
+    } catch (error) {
+      console.error("Failed to send email:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -122,7 +144,10 @@ const ContactForm = () => {
   ];
 
   return (
-    <div id="contact" className="min-h-screen flex items-center justify-center p-4  overflow-hidden py-20 border-none">
+    <div
+      id="contact"
+      className="min-h-screen flex items-center justify-center p-4  overflow-hidden py-20 border-none"
+    >
       {/* Floating particles background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {isMounted &&
@@ -152,18 +177,18 @@ const ContactForm = () => {
       </div>
 
       <div className="relative z-10 w-full max-w-6xl">
-           {/* Section Header */}
-      <SectionTitle
-        title={
-          <>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-              Let's Build Something 
-            </span>{" "}
-            Amazing Together
-          </>
-        }
-        // description="Professional growth-focused overview highlighting skills, experience, and certifications."
-      />
+        {/* Section Header */}
+        <SectionTitle
+          title={
+            <>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+                Let's Build Something
+              </span>{" "}
+              Amazing Together
+            </>
+          }
+          // description="Professional growth-focused overview highlighting skills, experience, and certifications."
+        />
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
           {/* Social/Contact Info */}
@@ -225,7 +250,7 @@ const ContactForm = () => {
 
           {/* 3D Form */}
           <motion.div
-            ref={formRef}
+            ref={tiltRef}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
             initial={{ opacity: 0, scale: 0.95 }}
@@ -274,7 +299,7 @@ const ContactForm = () => {
                 </button>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} ref={formRef} className="space-y-5">
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -294,6 +319,7 @@ const ContactForm = () => {
                       onChange={handleChange}
                       className={`w-full pl-10 pr-4 py-2.5 bg-gray-800/30 border ${errors.name ? "border-red-500" : "border-gray-700 hover:border-purple-500"} rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent text-white placeholder-gray-400 transition-all duration-300`}
                       placeholder="Asma Khokhar"
+                      required
                     />
                     {errors.name && (
                       <motion.p

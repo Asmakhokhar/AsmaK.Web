@@ -39,7 +39,7 @@ export default function TestimonialSection() {
     <section id="testimonials" className="py-28 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <SectionTitle
-          title={<>Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Feedback</span></>}
+          title={<>Client <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Testimonials</span></>}
           description="What people say about working with me"
         />
 

@@ -87,12 +87,12 @@ export default function AboutSection() {
         title={
           <>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
-              About
+              Technical
             </span>{" "}
-            / My Journey
+            Expertise
           </>
         }
-        description="Professional growth-focused overview highlighting skills, experience, and certifications."
+        description="A comprehensive overview of my skills, professional journey, and certifications in modern web development."
       />
 
       {/* Skills / Glass Cards */}

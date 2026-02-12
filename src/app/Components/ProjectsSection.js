@@ -71,7 +71,7 @@ export default function ProjectsSection() {
     <section id="projects" className="py-24 px-4">
       <div className="max-w-7xl mx-auto">
         <SectionTitle
-          title={<>My <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Projects</span></>}
+          title={<> Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">Projects</span></>}
           description="Selected work demonstrating real-world problem solving and production ready development"
         />
 
@@ -145,7 +145,7 @@ export default function ProjectsSection() {
           ))}
         </div>
         {/* CTA */}
-        <GithubCTA />
+        <GithubCTA href="https://github.com/Asmakhokhar" />
        
       </div>
     </section>

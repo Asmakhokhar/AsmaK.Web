@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@interactjs/react": "^1.10.3",
     "@reduxjs/toolkit": "^2.8.2",
     "animate.css": "^4.1.1",
