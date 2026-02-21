@@ -45,7 +45,7 @@ const projects = [
     stack: "HTML, CSS, JS",
     image: "./res.PNG",
     live: "https://feliciano-restaurant-website.vercel.app/",
-    github: "#",
+    github: "https://github.com/Asmakhokhar/Feliciano-Restaurant-Website",
   },
   {
     id: 5,
@@ -56,6 +56,16 @@ const projects = [
     image: "./dev.PNG",
     live: "https://www.deviconic.com/",
     github: "#",
+  },
+  {
+    id: 6,
+    title: "Techxicon Company Website",
+    category: "Frontend",
+    company: "Techxicon",
+    stack: "Next.js, Tailwind",
+    image: "./tx.PNG",
+    live: "https://glowing-octo-system-wio1.vercel.app/",
+    github: "https://github.com/Asmakhokhar/Tech-website",
   },
 ];
 
