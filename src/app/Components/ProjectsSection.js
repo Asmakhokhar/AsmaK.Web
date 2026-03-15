@@ -29,12 +29,12 @@ const projects = [
   },
   {
     id: 3,
-    title: "ChatBot Pro Web Application",
+    title: "PropertyFlow — Real Estate CRM",
     category: "Web Application",
-    company: "Neonecy",
-    stack: "React, Tailwind, Node.js, MongoDB, Ai Integration",
-    image: "./chat.PNG",
-    live: "https://smart-chat-finale.vercel.app/manager-dashboard/manager-bots",
+    company: "PropertyFlow",
+    stack: "React, Tailwind, Node.js, MongoDB, JWT Authentication",
+    image: "./prop.PNG",
+    live: "https://real-estate-erp-system.vercel.app/",
     github: "#",
   },
   {
